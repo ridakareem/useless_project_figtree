@@ -2,17 +2,16 @@
 
 
 
-# [Project Name] 🎯
+# Garden 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: Fig Tree
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: Rida Kareem - NSS College of Engineering
+- Member 2: Sidharth S - NSS College of Engineering
 
 ### Project Description
 [2-3 lines about what your project does]
