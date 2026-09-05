@@ -1,9 +1,39 @@
 #include <HX711.h>
+#include <ESP32Servo.h>
+
+// ==============================
+// SERVO
+// ==============================
+
+#define SERVO_PIN 26
+
+Servo butterflyServo;
+
+int angle = 60;
+int direction = 10;
+
+unsigned long servoTimer = 0;
+
+// Fastest and slowest servo movement
+const int FAST_SERVO_INTERVAL = 4;
+const int SLOW_SERVO_INTERVAL = 100;
 
 
+// ==============================
+// HX711 LOAD CELL
+// ==============================
 
 #define HX711_DT  32
 #define HX711_SCK 33
+
+HX711 scale;
+
+float calibrationFactor = -774.94;
+
+
+// ==============================
+// LEDs
+// ==============================
 
 const int LED_PINS[] = {
   4, 5, 13, 14, 16, 17, 18, 19
@@ -12,27 +42,21 @@ const int LED_PINS[] = {
 const int NUM_LEDS = 8;
 
 
-
-HX711 scale;
-
-float calibrationFactor = -774.94;
-
-
-
-
+// ==============================
+// BOTTLE SETTINGS
+// ==============================
 
 const float BOTTLE_DETECT_G = 50.0;
-
-
 const float BOTTLE_LIFT_G = 40.0;
 
 const unsigned long WAIT_TIME = 20000;
 
-
 const float FADE_SPEED = 5;
 
 
-
+// ==============================
+// VARIABLES
+// ==============================
 
 float bottleWeight = 0.0;
 
@@ -45,7 +69,9 @@ bool bottlePresent = false;
 bool fading = false;
 
 
-
+// ==============================
+// SETUP
+// ==============================
 
 void setup() {
 
@@ -53,6 +79,25 @@ void setup() {
 
   delay(1000);
 
+
+  // ============================
+  // SERVO SETUP
+  // ============================
+
+  butterflyServo.setPeriodHertz(50);
+
+  butterflyServo.attach(
+    SERVO_PIN,
+    500,
+    2400
+  );
+
+  butterflyServo.write(angle);
+
+
+  // ============================
+  // HX711 SETUP
+  // ============================
 
   scale.begin(
     HX711_DT,
@@ -66,7 +111,7 @@ void setup() {
 
   Serial.println();
   Serial.println("==============================");
-  Serial.println("       LED DIMMING TEST");
+  Serial.println("   BUTTERFLY + WATER SYSTEM");
   Serial.println("==============================");
   Serial.println();
 
@@ -83,7 +128,10 @@ void setup() {
   Serial.println();
 
 
- 
+  // ============================
+  // LED SETUP
+  // ============================
+
   for (
     int i = 0;
     i < NUM_LEDS;
@@ -104,10 +152,22 @@ void setup() {
 }
 
 
+// ==============================
+// MAIN LOOP
+// ==============================
 
 void loop() {
 
+  // ============================
+  // BUTTERFLY
+  // ============================
 
+  updateButterfly();
+
+
+  // ============================
+  // CHECK HX711
+  // ============================
 
   if (!scale.is_ready()) {
 
@@ -121,12 +181,13 @@ void loop() {
   }
 
 
-
   float weight =
     scale.get_units(5);
 
 
-
+  // ============================
+  // NO BOTTLE
+  // ============================
 
   if (!bottlePresent) {
 
@@ -134,27 +195,20 @@ void loop() {
       weight > BOTTLE_DETECT_G
     ) {
 
-      
-
       bottleWeight =
         weight;
-
 
       bottlePresent =
         true;
 
-
       fading =
         false;
-
 
       currentBrightness =
         255;
 
-
       fadeTimerStart =
         millis();
-
 
       setLEDs(255);
 
@@ -182,6 +236,10 @@ void loop() {
       );
 
       Serial.println(
+        "Butterfly = FAST"
+      );
+
+      Serial.println(
         "20 second timer started."
       );
 
@@ -205,13 +263,15 @@ void loop() {
     }
 
 
-    delay(500);
+    delay(100);
 
     return;
   }
 
 
- 
+  // ============================
+  // BOTTLE PICKED UP
+  // ============================
 
   if (
     weight <
@@ -223,7 +283,6 @@ void loop() {
 
     fading =
       false;
-
 
     Serial.println();
     Serial.println(
@@ -246,13 +305,17 @@ void loop() {
   }
 
 
-
+  // ============================
+  // TIMER
+  // ============================
 
   unsigned long elapsed =
     millis() - fadeTimerStart;
 
 
-
+  // ============================
+  // FIRST 20 SECONDS
+  // ============================
 
   if (
     elapsed <
@@ -280,14 +343,16 @@ void loop() {
     );
 
     Serial.println(
-      "LED: 100%"
+      "LED: 100% | Butterfly: FAST"
     );
   }
 
 
-  else {
+  // ============================
+  // AFTER 20 SECONDS
+  // ============================
 
-  
+  else {
 
     if (!fading) {
 
@@ -304,11 +369,17 @@ void loop() {
         ">>> LEDS DIMMING..."
       );
 
+      Serial.println(
+        ">>> BUTTERFLY SLOWING..."
+      );
+
       Serial.println();
     }
 
 
-  
+    // ==========================
+    // DIM LEDS
+    // ==========================
 
     if (
       currentBrightness >
@@ -320,7 +391,6 @@ void loop() {
     }
 
 
-  
     if (
       currentBrightness <
       5
@@ -336,8 +406,12 @@ void loop() {
     );
 
 
+    // ==========================
+    // STATUS
+    // ==========================
+
     Serial.print(
-      "Bottle present | Brightness: "
+      "Brightness: "
     );
 
     Serial.print(
@@ -345,8 +419,16 @@ void loop() {
       1
     );
 
+    Serial.print(
+      " / 255 | Butterfly interval: "
+    );
+
+    Serial.print(
+      getServoInterval()
+    );
+
     Serial.println(
-      " / 255"
+      " ms"
     );
   }
 
@@ -355,6 +437,101 @@ void loop() {
 }
 
 
+// ==============================
+// BUTTERFLY FUNCTION
+// ==============================
+
+void updateButterfly() {
+
+  int interval =
+    getServoInterval();
+
+
+  if (
+    millis() - servoTimer >= interval
+  ) {
+
+    servoTimer =
+      millis();
+
+
+    butterflyServo.write(
+      angle
+    );
+
+
+    angle += direction;
+
+
+    // Reverse at 150°
+    if (
+      angle >= 150
+    ) {
+
+      angle = 150;
+
+      direction = -1;
+    }
+
+
+    // Reverse at 30°
+    if (
+      angle <= 30
+    ) {
+
+      angle = 30;
+
+      direction = 1;
+    }
+  }
+}
+
+
+// ==============================
+// SERVO SPEED
+// ==============================
+
+int getServoInterval() {
+
+  /*
+     Brightness = 255
+       -> 15 ms interval
+       -> FAST
+
+     Brightness = 128
+       -> ~82 ms interval
+       -> MEDIUM
+
+     Brightness = 5
+       -> 150 ms interval
+       -> SLOW
+  */
+
+  int brightness =
+    constrain(
+      (int)currentBrightness,
+      5,
+      255
+    );
+
+
+  int interval =
+    map(
+      brightness,
+      5,
+      255,
+      SLOW_SERVO_INTERVAL,
+      FAST_SERVO_INTERVAL
+    );
+
+
+  return interval;
+}
+
+
+// ==============================
+// LED FUNCTION
+// ==============================
 
 void setLEDs(
   int brightness
