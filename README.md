@@ -2,7 +2,7 @@
 
 
 
-# Garden 🎯
+# LED Garden 🎯
 
 
 ## Basic Details
@@ -73,7 +73,7 @@ For Hardware:
 *Explain the build steps*
 
 ![Final](Add photo of final product here)
-<img src="/Users/sidharhs/Downloads/IMG_8105.HEIC" />
+<img src="./IMG_8105.HEIC" />
 
 ### Project Demo
 # Video
