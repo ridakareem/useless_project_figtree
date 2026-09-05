@@ -73,7 +73,7 @@ For Hardware:
 *Explain the build steps*
 
 ![Final](Add photo of final product here)
-*Explain the final build*
+<img src="/Users/sidharhs/Downloads/IMG_8105.HEIC" />
 
 ### Project Demo
 # Video
