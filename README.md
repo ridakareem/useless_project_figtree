@@ -56,19 +56,12 @@ A load cell mounted on our 3d printed water bottle holder measures the weight of
 
 [List tools required]:
   
-- ESP32 Dev Module
-- SG90 Servo Motor
-- 5 kg Load Cell
-- HX711 Load Cell Amplifier
-- 8 x LEDs
-- 8 x 220 Ω Resistors
-- Breadboard(s)
-- Jumper Wires
 - USB Cable for ESP32
 - Arduino UNO (for providing 5 V power to the servo)
 - Butterfly wings/body made from paper
 - Hot glue
 - Soldering iron and solder
+- Screws and screwdriver
 
 ## For Hardware:
 
