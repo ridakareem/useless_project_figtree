@@ -58,7 +58,7 @@ A load cell mounted on our 3d printed water bottle holder measures the weight of
   
 - ESP32 Dev Module
 - SG90 Servo Motor
-- 3 kg Load Cell
+- 5 kg Load Cell
 - HX711 Load Cell Amplifier
 - 8 x LEDs
 - 8 x 220 Ω Resistors
@@ -83,13 +83,15 @@ A load cell mounted on our 3d printed water bottle holder measures the weight of
 
 ![Build]
 <img src="./3dprint.jpeg"/>
+<img src="./final.jpeg" />
 
 ![Final]
-<img src="./final.jpeg" />
+<img src="./finalworking.jpeg" />
 
 ### Project Demo
 # Video
 [View the demo video](https://drive.google.com/file/d/1m3Mk-fjjqU8ugzSGBkaOYoNn9zo3vhoF/view?usp=drivesdk)
+
 When we initially place the water onto the holder it detects it and LED turns on with the brightest setting and butterfly flaps more frequently, it then continues to dim and stop within 20 seconds. when we take the waterbottle and drink it repeats the whole thing.
 
 ## Team Contributions
