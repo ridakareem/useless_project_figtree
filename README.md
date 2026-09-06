@@ -24,8 +24,8 @@ Our garden full of whimsical LED flowers and flapping servomotor that care a lit
 ## Technical Details
 A load cell mounted on our 3d printed water bottle holder measures the weight of the bottle and time spend on the holder simultaneously. If you leave it there for 20 second the garden(breadboard) adorned with LEDS and Servomotor assisted butterfly reacts to your lack of proper dehydration since they are connected through an ESP32. The LEDS dim and the butterfly gradually stops flapping it's paper wings when the bottle is kept too long. After you took the bottle out and put it back, we calculate the difference in weight to estimate the water consumed and let's the garden come alive again. Until you keep it there long enough. Loadcell is calibrated accurately through various trial and error this gives reliable data about your water consumption. Still don't you wanna lighten up the LEDS by just taking your water in?! :)
 
-For Hardware:
-- [List main components]:
+## For Hardware:
+[List main components]:
 
 - ESP32
 - Load Cell
@@ -54,7 +54,7 @@ For Hardware:
 | Communication | USB Serial, 115200 baud |
 
 
-- [List tools required]:
+[List tools required]:
   
 - ESP32 Dev Module
 - SG90 Servo Motor
@@ -70,21 +70,21 @@ For Hardware:
 - Hot glue
 - Soldering iron and solder
 
-For Hardware:
+## For Hardware:
 
 # Schematic & Circuit
 ![Circuit](Add your circuit diagram here)
-<img src="./"/>
+<img src=""/>
 
 ![Schematic](Add your schematic diagram here)
 <img src="./"/>
 
 # Build Photos
 ![Components](Add photo of your components here)
-<img src="./"/>
+<img src="./components.jpeg"/>
 
 ![Build](Add photos of build process here)
-<img src="./"/>
+<img src="./3dprint"/>
 
 ![Final](Add photo of final product here)
 <img src="./IMG_8105.HEIC" />
