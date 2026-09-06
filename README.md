@@ -27,23 +27,25 @@ A load cell mounted on our 3d printed water bottle holder measures the weight of
 For Hardware:
 - [List main components]: ESP32, LOADCELL, LEDS, SERVOMOTOR, ARDUINOUNO(to power motor), HX711(to amplify the load cell), Jumper Wires.
 - [List specifications]:
-| Component            | Specification                                        
-| -------------------- | ---------------------------------------------------- |
-| ESP32 Dev Module     | ESP32-D0WD-V3, dual-core, up to 240 MHz, 3.3 V logic |
-| Servo Motor          | SG90-type micro servo, 5 V, ~180° rotation           |
-| Load Cell            | 5 kg strain-gauge load cell                          |
-| HX711                | 24-bit ADC/load-cell amplifier, 2.6–5.5 V supply     |
-| LEDs                 | 8 × LEDs, individually PWM controlled                |
-| LED Resistors        | 220–330 Ω per LED                                    |
-| Servo Signal         | GPIO 26                                              |
-| HX711 DT             | GPIO 32                                              |
-| HX711 SCK            | GPIO 33                                              |
-| LED GPIOs            | 4, 5, 13, 14, 16, 17, 18, 19                         |
-| Servo PWM            | 50 Hz                                                |
-| Servo movement       | 60°–150°                                             |
-| LED PWM.             | 8-bit, 0–255 brightness                              |
-| Power.               | ESP32: 5 V USB / 3.3 V logic; Servo: 5 V             |
-| Communication        | USB Serial, 115200 baud                              |
+
+| Component | Specification |
+|-----------|----------------|
+| ESP32 Dev Module | ESP32-D0WD-V3, dual-core, up to 240 MHz, 3.3 V logic |
+| Servo Motor | SG90-type micro servo, 5 V, ~180° rotation |
+| Load Cell | 5 kg strain-gauge load cell |
+| HX711 | 24-bit ADC/load-cell amplifier, 2.6-5.5 V supply |
+| LEDs | 8 x LEDs, individually PWM controlled |
+| LED Resistors | 220-330 Ω per LED |
+| Servo Signal | GPIO 26 |
+| HX711 DT | GPIO 32 |
+| HX711 SCK | GPIO 33 |
+| LED GPIOs | 4, 5, 13, 14, 16, 17, 18, 19 |
+| Servo PWM | 50 Hz |
+| Servo movement | 60°-150° |
+| LED PWM | 8-bit, 0-255 brightness |
+| Power | ESP32: 5 V USB / 3.3 V logic; Servo: 5 V |
+| Communication | USB Serial, 115200 baud |
+
 
 - [List tools required]:
 ESP32 Dev Module
