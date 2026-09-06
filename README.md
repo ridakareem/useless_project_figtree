@@ -89,14 +89,13 @@ A load cell mounted on our 3d printed water bottle holder measures the weight of
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
-# Additional Demos
-[Add any extra demo materials/links]
+[View the demo video](https://drive.google.com/file/d/1m3Mk-fjjqU8ugzSGBkaOYoNn9zo3vhoF/view?usp=drivesdk)
+When we initially place the water onto the holder it detects it and LED turns on with the brightest setting and butterfly flaps more frequently, it then continues to dim and stop within 20 seconds. when we take the waterbottle and drink it repeats the whole thing.
 
 ## Team Contributions
+
 Both members collaborated on all aspects of the project - circuit design, hardware assembly, Arduino/ESP32 code, calibration testing and decorating.
+
 ---
 Made with ❤️ at TinkerHub Useless Projects 
 
