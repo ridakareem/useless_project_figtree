@@ -72,22 +72,20 @@ A load cell mounted on our 3d printed water bottle holder measures the weight of
 
 ## For Hardware:
 
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-<img src=""/>
+# Schematic 
 
-![Schematic](Add your schematic diagram here)
-<img src="./"/>
+![Schematic]
+<img src="./butterfly_esp32_uno_power_schematic.png"/>
 
 # Build Photos
-![Components](Add photo of your components here)
+![Components]
 <img src="./components.jpeg"/>
 
-![Build](Add photos of build process here)
-<img src="./3dprint"/>
+![Build]
+<img src="./3dprint.jpeg"/>
 
-![Final](Add photo of final product here)
-<img src="./IMG_8105.HEIC" />
+![Final]
+<img src="./final.jpeg" />
 
 ### Project Demo
 # Video
@@ -98,10 +96,7 @@ A load cell mounted on our 3d printed water bottle holder measures the weight of
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
-
+Both members collaborated on all aspects of the project - circuit design, hardware assembly, Arduino/ESP32 code, calibration testing and decorating.
 ---
 Made with ❤️ at TinkerHub Useless Projects 
 
